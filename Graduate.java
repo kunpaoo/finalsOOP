@@ -9,7 +9,7 @@ public class Graduate extends Student {
         return this.type;
     }
 
-    void setType() {
+    void setType(String type) {
         this.type = type;
     }
 
