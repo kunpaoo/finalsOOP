@@ -15,22 +15,23 @@ public class Main {
             System.out.print("Graduate(G) or Undergraduate(U): ");
             ug=inp.nextLine();
         }
+        String statype;
         if(ug.equals("G")){
             System.out.println("Part time(P) or Full time(F): ");
-            String pf = inp.nextLine();
-            while(!checkType(pf,"g")){
+            statype = inp.nextLine();
+            while(!checkType(statype,"g")){
                 System.out.println("Invalid input.");
                 System.out.print("Part time(P) or Full time(F): ");
-                pf=inp.nextLine();
+                statype=inp.nextLine();
             }
         }
         else{
             System.out.println("Regular(R) or Irregular(I): ");
-            String ir = inp.nextLine();
-            while(!checkType(ir,"g")){
+            statype = inp.nextLine();
+            while(!checkType(statype,"g")){
                 System.out.println("Invalid input.");
                 System.out.print("Regular(R) or Irregular(I): ");
-                ir=inp.nextLine();
+                statype=inp.nextLine();
             }
         }
         System.out.print("Enter your Student ID: ");
@@ -110,11 +111,25 @@ public class Main {
 
 
         // OBJECT STORAGE
-
+        Student s = null;
         switch(ug.toLowerCase()){
             case "u":
-
+                s = new Undergraduate().setStatus(statype);
+                break;
+            case "g":
+                s = new Graduate().setType(statype);
+                break;
         }
+        s.setFirstname(first);
+        s.setMidI(mid);
+        s.setLast(last);
+        s.setID(id);
+        s.setBirthdate(birth);
+        s.setGender(gend);
+        s.setAddress(addr);
+        s.setCourse(course);
+        s.setYear(year);
+        s.setNumber(num);
 
         //PROGRAM OUTPUT
     }
