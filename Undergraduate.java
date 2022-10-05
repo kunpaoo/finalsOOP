@@ -9,7 +9,7 @@ public class Undergraduate extends Student{
         return this.status;
     }
 
-    void setStatus() {
+    void setStatus(String status) {
         this.status = status;
     }
 
