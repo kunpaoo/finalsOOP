@@ -1,4 +1,4 @@
-public class Undergraduate {
+public class Undergraduate extends Student{
 
     private String status;
 
@@ -13,8 +13,13 @@ public class Undergraduate {
         this.status = status;
     }
 
-    void minYearsLeft(){
-        return;
+    int minYearsLeft(){
+        if(status.equalsIgnoreCase("r")){
+            return Integer.parseInt(getYear())-4;
+        }
+        else{
+            return 0; //if irregular, don't display minYearsLeft ???
+        }
     }
 
 }
