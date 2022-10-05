@@ -1,23 +1,27 @@
-public class Graduate {
+public class Graduate extends Student {
 
-        private String type;
+    private String type;
 
-        Graduate(){
+    Graduate(){
+    }
+
+    String getType() {
+        return this.type;
+    }
+
+    void setType() {
+        this.type = type;
+    }
+
+    int minYearsLeft(){
+        if(type.equalsIgnoreCase("f")){
+            return 1;
         }
-
-        String getType() {
-            return this.type;
+        else{
+            return Integer.parseInt(getYear()) - 2;
         }
-
-        void setType() {
-            this.type = type;
-        }
-
-        void minYearsLeft(){
-            return;
-        }
+    }
 
 }
-
 
 
