@@ -131,7 +131,33 @@ public class Main {
         s.setYear(year);
         s.setNumber(num);
 
-        //PROGRAM OUTPUT
+        System.out.println("Welcome," + first +" "
+                + mid
+                +" "
+                + last
+                + " to our system. "
+                + "Your birthday is "
+                + birth
+                + ", "
+                + "and you are "
+                + " years old, "
+                + "your gender is "
+                + gend
+                + "and you reside in "
+                + addr
+                + "."
+                + "\nYour course is "
+                + course
+                + ","
+                + "\ncurrently a "
+                + //Full Time or Partime ... Regular ... 1st Year;
+                + "Student"
+                + "\nYour Student ID is"
+                + id
+                +"For inquiries of his/her IT services, please contact him/her at "
+                + num
+                +"\nor send an email to "
+                + email);
     }
 
     static boolean checkContact(String num){
