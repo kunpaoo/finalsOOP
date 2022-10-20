@@ -1,5 +1,5 @@
 public class Student {
-    private String id,first,mid,last,birth,gend,addr,course,year,num,email;
+    private String id,first,mid,last,birth,gend,addr,course,year,num,email,status;
 
     Student(){
     }
@@ -97,4 +97,11 @@ public class Student {
         this.email = email;
     }
 
+    String getStatus() {
+        return this.status;
+    }
+
+    void setStatus(String status) {
+        this.status = status;
+    }
 }
