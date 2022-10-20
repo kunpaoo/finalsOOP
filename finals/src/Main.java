@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.*;
 import org.apache.commons.validator.routines.*; //jar files in https://commons.apache.org/proper/commons-validator/download_validator.cgi
@@ -10,114 +10,112 @@ public class Main {
         Scanner inp = new Scanner(System.in);
         System.out.print("Graduate(G) or Undergraduate(U): ");
         String ug = inp.nextLine();
-        while(!checkUG(ug)){
+        while (!checkUG(ug)) {
             System.out.println("Invalid input.");
             System.out.print("Graduate(G) or Undergraduate(U): ");
-            ug=inp.nextLine();
+            ug = inp.nextLine();
         }
         String statype;
-        if(ug.equals("G")){
+        if (ug.equalsIgnoreCase("G")) {
             System.out.println("Part time(P) or Full time(F): ");
             statype = inp.nextLine();
-            while(!checkType(statype,"g")){
+            while (!checkType(statype, "g")) {
                 System.out.println("Invalid input.");
                 System.out.print("Part time(P) or Full time(F): ");
-                statype=inp.nextLine();
+                statype = inp.nextLine();
             }
-        }
-        else{
+        } else {
             System.out.println("Regular(R) or Irregular(I): ");
             statype = inp.nextLine();
-            while(!checkType(statype,"g")){
+            while (!checkType(statype, "u")) {
                 System.out.println("Invalid input.");
                 System.out.print("Regular(R) or Irregular(I): ");
-                statype=inp.nextLine();
+                statype = inp.nextLine();
             }
         }
         System.out.print("Enter your Student ID: ");
         String id = inp.nextLine();
-        while(!checkId(id)){
+        while (!checkId(id)) {
             System.out.println("Invalid input.");
-            System.out.print("Enter your Student ID: ");
-            id=inp.nextLine();
+            System.out.print("Enter your Student ID (6 digits): ");
+            id = inp.nextLine();
         }
         System.out.print("Enter your first name: ");
         String first = inp.nextLine();
-        while(!checkName(first)){
+        while (!checkName(first)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your first name: ");
-            first=inp.nextLine();
+            first = inp.nextLine();
         }
         System.out.print("Enter your middle initial: ");
         String mid = inp.nextLine();
-        while(!checkName(mid)){
+        while (!checkName(mid)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your middle name: ");
-            mid=inp.nextLine();
+            mid = inp.nextLine();
         }
         System.out.print("Enter your last name: ");
         String last = inp.nextLine();
-        while(!checkName(last)){
+        while (!checkName(last)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your last name: ");
-            last=inp.nextLine();
+            last = inp.nextLine();
         }
         System.out.print("Enter your birthdate: ");
         String birth = inp.nextLine();
-        while(!checkDate(birth)){
+        while (!checkDate(birth)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your birthdate (Month Day, Year): ");
-            birth=inp.nextLine();
+            birth = inp.nextLine();
         }
         System.out.print("Enter your gender: ");
-        inp.nextLine();
         String gend = inp.nextLine();
-        while(!checkName(gend)){
+        while (!checkName(gend)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your gender: ");
-            gend=inp.nextLine();
+            gend = inp.nextLine();
         }
         System.out.print("Enter your address: ");
         String addr = inp.nextLine(); //how to validate address fhsjdkhf
 
         System.out.print("Enter your course: ");
         String course = inp.nextLine();
-        while(!checkName(course)){
+        while (!checkName(course)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your course: ");
-            course=inp.nextLine();
+            course = inp.nextLine();
         }
         System.out.print("Enter your year level: ");
         String year = inp.nextLine();
-        while(!checkYear(year)){
+        while (!checkYear(year)) {
             System.out.println("Invalid input.");
             System.out.print("Enter your year level: ");
-            year=inp.nextLine();
+            year = inp.nextLine();
         }
         System.out.print("Enter your contact number: ");
         String num = inp.nextLine();
-        while(!checkContact(num)){
+        while (!checkContact(num)) {
             System.out.println("Invalid number.");
             System.out.print("Enter your contact number: ");
-            num=inp.nextLine();
+            num = inp.nextLine();
         }
         System.out.print("Enter your email: ");
         String email = inp.nextLine();
-        while(!checkEmail(email)){
+        while (!checkEmail(email)) {
             System.out.println("Invalid email.");
             System.out.print("Enter your email: ");
-            email=inp.nextLine();
+            email = inp.nextLine();
         }
 
 
         // OBJECT STORAGE
         Student s = null;
-        switch(ug.toLowerCase()){
+        switch (ug.toLowerCase()) {
             case "u":
-                s = new Undergraduate().setStatus(statype);
+                s = new Undergraduate();
                 break;
             case "g":
-                s = new Graduate().setType(statype);
+                s = new Graduate();
                 break;
         }
         s.setFirstname(first);
@@ -130,36 +128,116 @@ public class Main {
         s.setCourse(course);
         s.setYear(year);
         s.setNumber(num);
+        s.setEmail(email);
+        s.setStatus(statype);
 
-        System.out.println("Welcome," + first +" "
-                + mid
-                +" "
-                + last
-                + " to our system. "
-                + "Your birthday is "
-                + birth
-                + ", "
-                + "and you are "
-                + " years old, "
-                + "your gender is "
-                + gend
-                + "and you reside in "
-                + addr
-                + "."
-                + "\nYour course is "
-                + course
-                + ","
-                + "\ncurrently a "
-                + //Full Time or Partime ... Regular ... 1st Year;
-                + "Student"
-                + "\nYour Student ID is"
-                + id
-                +"For inquiries of his/her IT services, please contact him/her at "
-                + num
-                +"\nor send an email to "
-                + email);
+        //PROGRAM OUTPUT
+
+    System.out.print("Welcome, "+s.getName()
+                        +" to our system. "
+                        +"Your birthday is "
+                        +s.getBirthdate()
+                        +" and you are "
+                        +age(s.getBirthdate())
+                        +" years old. "
+                        +"Your gender is "
+                        +s.getGender()
+                        +" and you reside in "
+                        +s.getAddress()
+                        +"."
+                        +"\nYour course is "
+                        +s.getCourse()
+                        +", currently a "
+                        + yearT(s.getYear()));
+    if (ug.equals("u")){
+        if(s.getStatus().equalsIgnoreCase("r")){
+            System.out.print(" regular");
+        }
+        else{
+            System.out.print(" irregular");
+        }
+        System.out.print(" undergraduate");
+    }
+    else{
+        if(s.getStatus().equalsIgnoreCase(("p"))){
+            System.out.print(" part time");
+        }
+        else{
+            System.out.print(" full time");
+        }
+        System.out.print(" graduate");
+    }
+    System.out.print(" student."
+                        +"\nYour Student ID is "
+                        +s.getID()
+                        +". For inquiries of "
+                        +pronouns(s.getGender(),"own").toLowerCase()
+                        +" IT services, please contact "
+                        +pronouns(s.getGender(),"obj").toLowerCase()
+                        +" at "
+                        +s.getNumber()
+                        +" or send an email to "
+                        +s.getEmail());
+}
+
+
+    static String yearT(String year){
+        switch(year){
+            case "1":
+                return "1st year ";
+            case "2":
+                return "2nd year ";
+            case "3":
+                return "3rd year ";
+            default:
+                return year+"th year";
+        }
+    }
+    static String pronouns(String gend, String type){
+        gend = gend.toLowerCase();
+        if(gend.equals("male") || gend.equals("m")){
+            if(type.equals("own")){
+                return "His";
+            }
+            else if(type.equals("title")){
+                return "Mr.";
+            }
+            else if(type.equals("obj")){
+                return "him";
+            }
+        }
+        else if(gend.equals("female")||gend.equals("f")){
+            if(type.equals("own") || type.equals("obj")){
+                return "Her";
+            }
+            else if(type.equals("title")){
+                return "Ms.";
+            }
+        }
+        if(type.equals("own")){
+            return "Their";
+        }
+        else if(type.equals("title")){
+            return "Mx.";
+        }
+        else if(type.equals("obj")){
+            return "them";
+        }
+        else{
+            return "Invalid.";
+        }
+
     }
 
+    static int age(String birth){
+        DateTimeFormatter form = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        LocalDate bdate = LocalDate.parse(birth,form);
+        LocalDate todei = LocalDate.now();
+        Period age = Period.between(bdate, todei);
+        return age.getYears();
+
+
+    }
     static boolean checkContact(String num){
         char[] nm = num.toCharArray();
         if(num.length()==11){
@@ -198,7 +276,7 @@ public class Main {
 
     static boolean checkUG(String ug){
         String lower = ug.toLowerCase();
-        switch (ug){
+        switch (lower){
             case "u":
             case "g":
                 return true;
@@ -209,28 +287,26 @@ public class Main {
     }
 
     static boolean checkType(String typ, String ug){
-        String lower = ug.toLowerCase();
-        if(lower.equals("u")){
-            switch(typ.toLowerCase()){
-                case "i":
-                case "r":
-                    return true;
-                default:
-                    return false;
+        if(ug.equalsIgnoreCase("u")){
+            if(typ.equalsIgnoreCase("i")||typ.equalsIgnoreCase("r")){
+                return true;
+            }
+            else{
+                return false;
             }
         }
         else{
-            switch(typ.toLowerCase()){
-                case "p":
-                case "f":
-                    return true;
-                default:
-                    return false;
+            if(typ.equalsIgnoreCase("p")||typ.equalsIgnoreCase("f")){
+                return true;
+            }
+            else{
+                return false;
             }
         }
     }
 
-    static boolean checkName(String n){
+    static boolean checkName(String b){
+        String n = b.replace(" ","");
         for(int i=0; i<n.length();i++){
             char x = n.charAt(i);
             if(!Character.isLetter(x)){
@@ -242,11 +318,11 @@ public class Main {
 
     static boolean checkDate(String date){
         DateValidator x = DateValidator.getInstance();
-        return x.isValid(date,"MMMM d, yyyy");
+        return x.isValid(date,"MMMM d, yyyy") && age(date)>0;
     }
 
     static boolean checkYear(String year){
-        if(year.length()!=0){
+        if(year.length()!=1){
             return false;
         }
         if(!Character.isDigit(year.charAt(0))){
