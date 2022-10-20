@@ -1,24 +1,16 @@
 public class Graduate extends Student {
 
-    private String type;
+
 
     Graduate(){
     }
 
-    String getType() {
-        return this.type;
-    }
-
-    void setType(String type) {
-        this.type = type;
-    }
-
     int minYearsLeft(){
-        if(type.equalsIgnoreCase("f")){
+        if(getStatus().equalsIgnoreCase("f")){
             return 1;
         }
         else{
-            return Integer.parseInt(getYear()) - 2;
+            return 2;
         }
     }
 
