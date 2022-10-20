@@ -85,13 +85,17 @@ public class Main {
             System.out.print("Enter your course: ");
             course = inp.nextLine();
         }
-        System.out.print("Enter your year level: ");
-        String year = inp.nextLine();
-        while (!checkYear(year)) {
-            System.out.println("Invalid input.");
+        String year = null;
+        if(ug.equalsIgnoreCase("u")){
             System.out.print("Enter your year level: ");
             year = inp.nextLine();
+            while (!checkYear(year)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your year level: ");
+                year = inp.nextLine();
+            }
         }
+
         System.out.print("Enter your contact number: ");
         String num = inp.nextLine();
         while (!checkContact(num)) {
@@ -133,23 +137,23 @@ public class Main {
 
         //PROGRAM OUTPUT
 
-    System.out.print("Welcome, "+s.getName()
-                        +" to our system. "
+    System.out.print("\nWelcome, "+s.getName()
+                        +" to our university. "
                         +"Your birthday is "
                         +s.getBirthdate()
                         +" and you are "
                         +age(s.getBirthdate())
                         +" years old. "
-                        +"Your gender is "
+                        +"\nYour gender is "
                         +s.getGender()
                         +" and you reside in "
                         +s.getAddress()
                         +"."
                         +"\nYour course is "
                         +s.getCourse()
-                        +", currently a "
-                        + yearT(s.getYear()));
-    if (ug.equals("u")){
+                        +", currently a");
+    if (ug.equalsIgnoreCase("u")){
+        System.out.print(" "+yearT(s.getYear()));
         if(s.getStatus().equalsIgnoreCase("r")){
             System.out.print(" regular");
         }
@@ -167,66 +171,33 @@ public class Main {
         }
         System.out.print(" graduate");
     }
-    System.out.print(" student."
-                        +"\nYour Student ID is "
-                        +s.getID()
-                        +". For inquiries of "
-                        +pronouns(s.getGender(),"own").toLowerCase()
-                        +" IT services, please contact "
-                        +pronouns(s.getGender(),"obj").toLowerCase()
-                        +" at "
-                        +s.getNumber()
-                        +" or send an email to "
-                        +s.getEmail());
+    System.out.print(" student."+"\nYour Student ID is "  +s.getID()+".");
+    System.out.print(" Your contact number is "+s.getNumber()+" and your email is "+s.getEmail()+".");
+
+    if(!s.getStatus().equalsIgnoreCase("i")){
+        if(Integer.parseInt(s.getYear())==4){
+            System.out.println("\nYou're graduating this year. Good luck!");
+        }
+        else{
+            System.out.println("\nYou currently have a minimum of "+s.minYearsLeft()+" years left before graduating. Good luck!");
+        }
+
+    }
+
 }
 
 
     static String yearT(String year){
         switch(year){
             case "1":
-                return "1st year ";
+                return "1st year";
             case "2":
-                return "2nd year ";
+                return "2nd year";
             case "3":
-                return "3rd year ";
+                return "3rd year";
             default:
                 return year+"th year";
         }
-    }
-    static String pronouns(String gend, String type){
-        gend = gend.toLowerCase();
-        if(gend.equals("male") || gend.equals("m")){
-            if(type.equals("own")){
-                return "His";
-            }
-            else if(type.equals("title")){
-                return "Mr.";
-            }
-            else if(type.equals("obj")){
-                return "him";
-            }
-        }
-        else if(gend.equals("female")||gend.equals("f")){
-            if(type.equals("own") || type.equals("obj")){
-                return "Her";
-            }
-            else if(type.equals("title")){
-                return "Ms.";
-            }
-        }
-        if(type.equals("own")){
-            return "Their";
-        }
-        else if(type.equals("title")){
-            return "Mx.";
-        }
-        else if(type.equals("obj")){
-            return "them";
-        }
-        else{
-            return "Invalid.";
-        }
-
     }
 
     static int age(String birth){
