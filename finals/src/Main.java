@@ -144,12 +144,12 @@ public class Main {
                         +" and you are "
                         +age(s.getBirthdate())
                         +" years old. "
-                        +"\nYour gender is "
+                        +"Your gender is "
                         +s.getGender()
                         +" and you reside in "
                         +s.getAddress()
                         +"."
-                        +"\nYour course is "
+                        +" Your course is "
                         +s.getCourse()
                         +", currently a");
     if (ug.equalsIgnoreCase("u")){
@@ -171,7 +171,7 @@ public class Main {
         }
         System.out.print(" graduate");
     }
-    System.out.print(" student."+"\nYour Student ID is "  +s.getID()+".");
+    System.out.print(" student."+" Your Student ID is "  +s.getID()+".");
     System.out.print(" Your contact number is "+s.getNumber()+" and your email is "+s.getEmail()+".");
 
     if(!s.getStatus().equalsIgnoreCase("i")){
