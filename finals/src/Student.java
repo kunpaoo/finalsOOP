@@ -104,4 +104,8 @@ public class Student {
     void setStatus(String status) {
         this.status = status;
     }
+
+    int minYearsLeft(){
+        return 0;
+    }
 }
