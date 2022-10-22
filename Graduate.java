@@ -5,14 +5,19 @@ public class Graduate extends Student {
     Graduate(){
     }
 
-    int minYearsLeft(){
-        if(getStatus().equalsIgnoreCase("f")){
-            return 1;
+    String showType(){
+        return "Graduate";
+    }
+
+    String showStatus(){
+        if(getStatus().equalsIgnoreCase("p")){
+            return "Part time";
         }
         else{
-            return 2;
+            return "Full time";
         }
     }
+
 
 }
 
