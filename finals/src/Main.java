@@ -142,7 +142,7 @@ public class Main {
             s.setEmail(email);
             s.setStatus(statype);
 
-            //empty file
+            //empties file contents
             PrintWriter pw = new PrintWriter("src/data.txt");
             pw.close();
 
