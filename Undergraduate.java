@@ -4,13 +4,16 @@ public class Undergraduate extends Student{
     Undergraduate(){
     }
 
+    String showType(){
+        return "Undergraduate";
+    }
 
-    int minYearsLeft(){
+    String showStatus(){
         if(getStatus().equalsIgnoreCase("r")){
-            return 4-Integer.parseInt(getYear());
+            return "Regular";
         }
         else{
-            return 0; //if irregular, don't display minYearsLeft ???
+            return "Irregular";
         }
     }
 
