@@ -1,3 +1,7 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Student {
     private String id,first,mid,last,birth,gend,addr,course,year,num,email,status;
 
@@ -105,7 +109,12 @@ public class Student {
         this.status = status;
     }
 
-    int minYearsLeft(){
-        return 0;
+    String showStatus(){
+        return null;
+    }
+
+
+    String showType(){
+        return null;
     }
 }
