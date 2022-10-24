@@ -11,63 +11,117 @@ import org.apache.commons.validator.routines.*; //jar files in https://commons.a
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        Student s;
-        String ug;
-        while (true) {
+
+        while(true){
             FileWriter c = new FileWriter("src/data.txt");
             Scanner inp = new Scanner(System.in);
             System.out.print("Graduate(G) or Undergraduate(U): ");
-            ug = inp.nextLine();
+            String ug = inp.nextLine();
+            while (!checkUG(ug)) {
+                System.out.println("Invalid input.");
+                System.out.print("Graduate(G) or Undergraduate(U): ");
+                ug = inp.nextLine();
+            }
 
             String statype;
             if (ug.equalsIgnoreCase("G")) {
                 System.out.println("Part time(P) or Full time(F): ");
                 statype = inp.nextLine();
-
+                while (!checkType(statype, "g")) {
+                    System.out.println("Invalid input.");
+                    System.out.print("Part time(P) or Full time(F): ");
+                    statype = inp.nextLine();
+                }
             } else {
                 System.out.println("Regular(R) or Irregular(I): ");
                 statype = inp.nextLine();
-
+                while (!checkType(statype, "u")) {
+                    System.out.println("Invalid input.");
+                    System.out.print("Regular(R) or Irregular(I): ");
+                    statype = inp.nextLine();
+                }
             }
             System.out.print("Enter your Student ID: ");
             String id = inp.nextLine();
-
+            while (!checkId(id)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your Student ID (6 digits): ");
+                id = inp.nextLine();
+            }
             System.out.print("Enter your first name: ");
             String first = inp.nextLine();
-
+            while (!checkName(first)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your first name: ");
+                first = inp.nextLine();
+            }
             System.out.print("Enter your middle initial: ");
             String mid = inp.nextLine();
-
+            while (!checkName(mid)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your middle name: ");
+                mid = inp.nextLine();
+            }
             System.out.print("Enter your last name: ");
             String last = inp.nextLine();
-
+            while (!checkName(last)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your last name: ");
+                last = inp.nextLine();
+            }
             System.out.print("Enter your birthdate: ");
             String birth = inp.nextLine();
-
+            while (!checkDate(birth)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your birthdate (Month Day, Year): ");
+                birth = inp.nextLine();
+            }
             System.out.print("Enter your gender: ");
             String gend = inp.nextLine();
-
+            while (!checkName(gend)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your gender: ");
+                gend = inp.nextLine();
+            }
             System.out.print("Enter your address: ");
             String addr = inp.nextLine(); //how to validate address fhsjdkhf
 
             System.out.print("Enter your course: ");
             String course = inp.nextLine();
-
+            while (!checkName(course)) {
+                System.out.println("Invalid input.");
+                System.out.print("Enter your course: ");
+                course = inp.nextLine();
+            }
             String year = null;
-            if (ug.equalsIgnoreCase("u")) {
+            if(ug.equalsIgnoreCase("u")){
                 System.out.print("Enter your year level: ");
                 year = inp.nextLine();
+                while (!checkYear(year)) {
+                    System.out.println("Invalid input.");
+                    System.out.print("Enter your year level: ");
+                    year = inp.nextLine();
+                }
             }
 
             System.out.print("Enter your contact number: ");
             String num = inp.nextLine();
-
+            /*while (!checkContact(num)) {
+                System.out.println("Invalid number.");
+                System.out.print("Enter your contact number: ");
+                num = inp.nextLine();
+            }*/
             System.out.print("Enter your email: ");
             String email = inp.nextLine();
 
 
+
+
+
+
+
             // OBJECT STORAGE
-            s = null;
+            Student s = null;
             switch (ug.toLowerCase()) {
                 case "u":
                     s = new Undergraduate();
@@ -89,25 +143,25 @@ public class Main {
             s.setEmail(email);
             s.setStatus(statype);
 
-            //empties file contents
+            //empty file
             PrintWriter pw = new PrintWriter("src/data.txt");
             pw.close();
 
             //write file
-            c.write("\nType: " + s.showType());
-            c.write("\nStatus: " + s.showStatus());
-            c.write("\nStudent ID: " + s.getID());
-            c.write("\nName: " + s.getName());
-            c.write("\nBirthdate: " + s.getBirthdate());
-            c.write("\nGender: " + s.getGender());
-            c.write("\nAddress: " + s.getAddress());
-            c.write("\nCourse: " + s.getCourse());
+            c.write("\nType: "+s.showType());
+            c.write("\nStatus: "+s.showStatus());
+            c.write("\nStudent ID: "+s.getID());
+            c.write("\nName: "+s.getName());
+            c.write("\nBirthdate: "+s.getBirthdate());
+            c.write("\nGender: "+s.getGender());
+            c.write("\nAddress: "+s.getAddress());
+            c.write("\nCourse: "+s.getCourse());
 
-            if (ug.equalsIgnoreCase("u")) {
-                c.write("\nYear: " + s.getYear());
+            if(ug.equalsIgnoreCase("u")){
+                c.write("\nYear: "+s.getYear());
             }
-            c.write("\nContact Number: " + s.getNumber());
-            c.write("\nEmail: " + s.getEmail());
+            c.write("\nContact Number: "+s.getNumber());
+            c.write("\nEmail: "+s.getEmail());
             c.flush();
             //PROGRAM OUTPUT
             boolean error = false;
@@ -122,7 +176,8 @@ public class Main {
                 System.out.println("Invalid Contact Number.");
             }
 
-            if (!checkYear(year)) {
+            if (ug.equalsIgnoreCase("u") && !checkYear(year)) {
+                error = true;
                 System.out.println("Invalid Year.");
             }
 
@@ -199,52 +254,8 @@ public class Main {
             }
 
         }
-
-
-        System.out.print("\nWelcome, " + s.getName()
-                + " to our university. "
-                + "Your birthday is "
-                + s.getBirthdate()
-                + " and you are "
-                + age(s.getBirthdate())
-                + " years old. "
-                + "\nYour gender is "
-                + s.getGender()
-                + " and you reside in "
-                + s.getAddress()
-                + "."
-                + "\nYour course is "
-                + s.getCourse()
-                + ", currently a");
-        if (ug.equalsIgnoreCase("u")) {
-            System.out.print(" " + yearT(s.getYear()));
-            if (s.getStatus().equalsIgnoreCase("r")) {
-                System.out.print(" regular");
-            } else {
-                System.out.print(" irregular");
-            }
-            System.out.print(" undergraduate");
-        } else {
-            if (s.getStatus().equalsIgnoreCase(("p"))) {
-                System.out.print(" part time");
-            } else {
-                System.out.print(" full time");
-            }
-            System.out.print(" graduate");
-        }
-        System.out.print(" student." + "\nYour Student ID is " + s.getID() + ".");
-        System.out.print(" Your contact number is " + s.getNumber() + " and your email is " + s.getEmail() + ".");
-
-        if (!s.getStatus().equalsIgnoreCase("i")) {
-            if (Integer.parseInt(s.getYear()) == 4) {
-                System.out.println("\nYou're graduating this year. Good luck!");
-            } else {
-                System.out.println("\nYou currently have a minimum of " + s.minYearsLeft() + " years left before graduating. Good luck!");
-            }
-
-        }
-
-    }
+        
+}
 
 
     static String yearT(String year){
