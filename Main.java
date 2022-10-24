@@ -17,108 +17,54 @@ public class Main {
             Scanner inp = new Scanner(System.in);
             System.out.print("Graduate(G) or Undergraduate(U): ");
             String ug = inp.nextLine();
-            while (!checkUG(ug)) {
-                System.out.println("Invalid input.");
-                System.out.print("Graduate(G) or Undergraduate(U): ");
-                ug = inp.nextLine();
-            }
+          
 
             String statype;
             if (ug.equalsIgnoreCase("G")) {
                 System.out.println("Part time(P) or Full time(F): ");
                 statype = inp.nextLine();
-                while (!checkType(statype, "g")) {
-                    System.out.println("Invalid input.");
-                    System.out.print("Part time(P) or Full time(F): ");
-                    statype = inp.nextLine();
-                }
+                
             } else {
                 System.out.println("Regular(R) or Irregular(I): ");
                 statype = inp.nextLine();
-                while (!checkType(statype, "u")) {
-                    System.out.println("Invalid input.");
-                    System.out.print("Regular(R) or Irregular(I): ");
-                    statype = inp.nextLine();
-                }
+               
             }
             System.out.print("Enter your Student ID: ");
             String id = inp.nextLine();
-            while (!checkId(id)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your Student ID (6 digits): ");
-                id = inp.nextLine();
-            }
+           
             System.out.print("Enter your first name: ");
             String first = inp.nextLine();
-            while (!checkName(first)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your first name: ");
-                first = inp.nextLine();
-            }
+          
             System.out.print("Enter your middle initial: ");
             String mid = inp.nextLine();
-            while (!checkName(mid)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your middle name: ");
-                mid = inp.nextLine();
-            }
+           
             System.out.print("Enter your last name: ");
             String last = inp.nextLine();
-            while (!checkName(last)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your last name: ");
-                last = inp.nextLine();
-            }
+         
             System.out.print("Enter your birthdate: ");
             String birth = inp.nextLine();
-            while (!checkDate(birth)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your birthdate (Month Day, Year): ");
-                birth = inp.nextLine();
-            }
+         
             System.out.print("Enter your gender: ");
             String gend = inp.nextLine();
-            while (!checkName(gend)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your gender: ");
-                gend = inp.nextLine();
-            }
+          
             System.out.print("Enter your address: ");
             String addr = inp.nextLine(); //how to validate address fhsjdkhf
 
             System.out.print("Enter your course: ");
             String course = inp.nextLine();
-            while (!checkName(course)) {
-                System.out.println("Invalid input.");
-                System.out.print("Enter your course: ");
-                course = inp.nextLine();
-            }
+          
             String year = null;
             if(ug.equalsIgnoreCase("u")){
                 System.out.print("Enter your year level: ");
                 year = inp.nextLine();
-                while (!checkYear(year)) {
-                    System.out.println("Invalid input.");
-                    System.out.print("Enter your year level: ");
-                    year = inp.nextLine();
-                }
+              
             }
 
             System.out.print("Enter your contact number: ");
             String num = inp.nextLine();
-            /*while (!checkContact(num)) {
-                System.out.println("Invalid number.");
-                System.out.print("Enter your contact number: ");
-                num = inp.nextLine();
-            }*/
             System.out.print("Enter your email: ");
             String email = inp.nextLine();
-
-
-
-
-
-
+            
 
             // OBJECT STORAGE
             Student s = null;
@@ -254,7 +200,7 @@ public class Main {
             }
 
         }
-        
+
 }
 
 
