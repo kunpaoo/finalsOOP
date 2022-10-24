@@ -181,7 +181,7 @@ public class Main {
 
             }
 
-            if (error) {
+            if (!error) {
                 System.out.println("Here's the data you've entered.");
                 Scanner read = new Scanner(new FileReader("src/data.txt"));
 
